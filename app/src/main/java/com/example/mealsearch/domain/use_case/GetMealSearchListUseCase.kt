@@ -23,7 +23,8 @@ constructor(private val  repository: MealSearchRepository){
 
             val response = repository.getMealList(s)
             val list =  if (response.meals.isNullOrEmpty()) emptyList<Meal>()
-                        else response.meals.map { it.toDomainMeal() }
+                        else response.meals.map {
+                it.toDomainMeal() }
 
             //after this our loading state is ended because we loaded all data emit this data
             emit(Resource.Success(data = list))

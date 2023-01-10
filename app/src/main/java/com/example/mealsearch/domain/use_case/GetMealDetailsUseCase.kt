@@ -2,7 +2,6 @@ package com.example.mealsearch.domain.use_case
 
 import com.example.mealsearch.common.Resource
 import com.example.mealsearch.data.model.toDomainMealDetails
-import com.example.mealsearch.domain.model.Meal
 import com.example.mealsearch.domain.model.MealDetails
 import com.example.mealsearch.domain.repository.GetMealDetailsRepository
 import kotlinx.coroutines.flow.Flow
@@ -26,7 +25,6 @@ constructor(private val repository: GetMealDetailsRepository)
 
             //Now emit data to UI
             emit(Resource.Success(data = response))
-
 
         }catch (e: HttpException){
             emit(Resource.Error(message=e.localizedMessage ?: "Unknown error"))

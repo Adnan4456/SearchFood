@@ -17,9 +17,9 @@ constructor(
     private val mealDetailsUseCase: GetMealDetailsUseCase)
     :ViewModel() {
 
-
     private val _mealDetails = MutableStateFlow<MealDetailsState>(MealDetailsState())
     val mealDetails: StateFlow<MealDetailsState> = _mealDetails
+
 
     fun getMealDetails(id: String) {
         mealDetailsUseCase(id).onEach {
