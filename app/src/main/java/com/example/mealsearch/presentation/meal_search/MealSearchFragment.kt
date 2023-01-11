@@ -1,6 +1,7 @@
 package com.example.mealsearch.presentation.meal_search
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.mealsearch.databinding.FragmentMealSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,12 +28,14 @@ class MealSearchFragment : Fragment() {
 
     private val mealSearchViewModel:MealSearchViewModel by viewModels()
 
-    @Inject
-    lateinit var searchAdapter:MealSearchAdapter
+//    @Inject
+//    lateinit var searchAdapter:MealSearchAdapter
+
+    lateinit var pagingAdapter: MealPagingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mealSearchViewModel.searchMealList("chicken")
+
     }
 
     override fun onCreateView(
@@ -40,6 +44,15 @@ class MealSearchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentMealSearchBinding.inflate(inflater, container,false)
+
+        pagingAdapter = MealPagingAdapter(MealPagingAdapter.OnClickListener{
+            val action = MealSearchFragmentDirections.actionMealSearchFragmentToMealDetailsFragment(
+                mealId = it.idMeal)
+            findNavController().navigate(action)
+        })
+
+        mealSearchViewModel.searchMealList("chicken")
+
         return _binding?.root
     }
 
@@ -48,7 +61,16 @@ class MealSearchFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
                 query?.let {
-                    mealSearchViewModel.searchMealList(it)
+                    lifecycleScope.launch {
+                        repeatOnLifecycle(Lifecycle.State.STARTED){
+
+                            mealSearchViewModel.searchMealList(it).collectLatest{ loadStates ->
+                                binding.recyclerView.visibility = View.VISIBLE
+                                binding.progressBar.visibility = View.GONE
+                                pagingAdapter.submitData(loadStates)
+                            }
+                        }
+                    }
                 }
                 return false
             }
@@ -59,38 +81,37 @@ class MealSearchFragment : Fragment() {
 
         })
         binding.recyclerView.apply {
-            adapter = searchAdapter
+            adapter = pagingAdapter
         }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
+
+
+        /*
                 mealSearchViewModel.mealSearchList.collect{
 
                     if (it.isLoading){
                         binding.progressBar.visibility = View.VISIBLE
-
+                        Log.d("TAG","Loading")
                     }
                     if (it.error.isNotBlank()){
                         binding.progressBar.visibility = View.GONE
+                        Log.d("TAG","Error")
                     }
                     if (it.data != null){
+                        Log.d("TAG","getting data")
                         binding.progressBar.visibility = View.GONE
 
                         it.data.let {
-                         searchAdapter.setContentList(it.toMutableList())
-                     }
+//                         searchAdapter.setContentList(it.toMutableList())
+                            pagingAdapter.submitData(it)
+
+                        }
                     }
                 }
+                */
             }
-        }
-
-
-
-        //click item listener
-        searchAdapter.itemClickListener {
-            val action = MealSearchFragmentDirections.actionMealSearchFragmentToMealDetailsFragment(
-                mealId = it.mealId)
-            findNavController().navigate(action)
         }
     }
 

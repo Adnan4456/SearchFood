@@ -6,9 +6,12 @@
 
     <data>
 
+<!--        <variable-->
+<!--            name="meal"-->
+<!--            type="com.example.mealsearch.domain.model.Meal" />-->
         <variable
-            name="meal"
-            type="com.example.mealsearch.domain.model.Meal" />
+            name="mealDTO"
+            type="com.example.mealsearch.data.model.MealDTO" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -30,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:src="@color/black"
-                app:urlToImage="@{meal.image}"
+                app:urlToImage="@{mealDTO.strMealThumb}"
                 tools:src="@drawable/ic_placeholder" />
 
             <TextView
@@ -39,16 +42,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="@{meal.name}"
+                android:text="@{mealDTO.strMeal}"
                 tools:text="Chicken"
                 android:gravity="center"
                 android:background="@color/white"
                 android:textColor="@color/black"
                 android:layout_alignParentBottom="true"/>
-
-
         </RelativeLayout>
-
-
     </com.google.android.material.card.MaterialCardView>
 </layout>

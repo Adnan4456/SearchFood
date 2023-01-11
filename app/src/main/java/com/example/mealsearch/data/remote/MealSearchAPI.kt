@@ -8,8 +8,11 @@ interface MealSearchAPI {
 
     //search meals
     @GET("api/json/v1/1/search.php")
-    suspend fun getMealList(@Query("s") s:String): MealsDTO
-
+    suspend fun getMealList(
+        @Query("s") s:String,
+        @Query("page") page:Int,
+        @Query("limit") limit: Int
+    ):MealsDTO
 
     //detail of meal
     @GET("api/json/v1/1/lookup.php")

@@ -93,10 +93,10 @@ class GetMealListImplTest{
     @Test
     fun testGetMealList() = runTest{
 
-        Mockito.`when`(mealSearchAPI.getMealList("chicken"))
+        Mockito.`when`(mealSearchAPI.getMealList("chicken" , 1 ,10))
             .thenReturn(mealsDTO)
 
-        val result = mealSearchAPI.getMealList("chicken")
+        val result = mealSearchAPI.getMealList("chicken" ,1,10)
 
         testDispatcher.scheduler.advanceUntilIdle()
 
@@ -109,10 +109,10 @@ class GetMealListImplTest{
     @Test
     fun testGetEmptyMealList() = runTest{
 
-        Mockito.`when`(mealSearchAPI.getMealList("chicken"))
+        Mockito.`when`(mealSearchAPI.getMealList("chicken" , 1 ,10))
             .thenReturn(emptyMealsDTO)
 
-        val result = mealSearchAPI.getMealList("chicken")
+        val result = mealSearchAPI.getMealList("chicken" , 1 ,10 )
 //           Now compare the size of list that is 0.because i am mocking empty list
         assertEquals(0 , result.meals.size)
     }

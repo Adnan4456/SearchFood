@@ -8,7 +8,7 @@ import com.example.mealsearch.domain.model.Meal
 import javax.inject.Inject
 
 class MealSearchAdapter
-    @Inject
+//    @Inject
     constructor()
     : RecyclerView.Adapter<MealSearchAdapter.MyViewHolder>() {
 
@@ -41,7 +41,7 @@ class MealSearchAdapter
     }
 
     override fun onBindViewHolder(holder: MealSearchAdapter.MyViewHolder, position: Int) {
-        holder.viewHolder.meal = this.list[position]
+//        holder.viewHolder.meal = this.list[position]
 
         holder.viewHolder.root.setOnClickListener {
             listener?.let {

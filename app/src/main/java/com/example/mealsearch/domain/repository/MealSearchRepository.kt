@@ -1,9 +1,11 @@
 package com.example.mealsearch.domain.repository
 
-import com.example.mealsearch.data.model.MealsDTO
+import androidx.paging.PagingData
+import com.example.mealsearch.data.model.MealDTO
+import kotlinx.coroutines.flow.Flow
 
 interface MealSearchRepository {
 
-    suspend fun getMealList(s:String):MealsDTO
+     fun getMealList(s:String): Flow<PagingData<MealDTO>>
 
 }
