@@ -33,6 +33,7 @@ Minimum API level supported is: 23
  * [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Dependency injection library for android.
  * [NavigationComponets](https://developer.android.com/guide/navigation/navigation-getting-started) 
  * [Retrofit](https://square.github.io/retrofit/) - A Type-safe HTTP client for android and java used to consume REST APIs.
+ * [Paging 3] -Load data from server in small chuck to improve performance.
  * [Gson](https://github.com/google/gson) - Used to convert Json to java and kotlin objects.
  * [Glide](https://github.com/bumptech/glide) - Image loader library for android.
  * [Diff Utill Adapter] - This class finds the difference between two lists and provides the updated list as an output.
@@ -42,6 +43,8 @@ Minimum API level supported is: 23
  * [Glide](https://github.com/bumptech/glide) - Image loading framework for android that wraps media decoding, memory and disk caching.
  * [Flow API](https://kotlinlang.org/docs/flow.html#sequences) - In coroutines, a flow is a type that can emit multiple values sequentially, as opposed to suspend functions that return only a single value.
  * [Binding Adapters] - Use to load image using  Glide library in different class.
+ * [Expresso UI] - Expresso Library for Ui testing.
+ * [Mockito] - For JUnit testing i use Mockito librayr to mock the objects.
 <br>
 
 <img src="assets/loading.png">
