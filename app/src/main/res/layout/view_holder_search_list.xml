@@ -14,40 +14,63 @@
             type="com.example.mealsearch.data.model.MealDTO" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <com.skydoves.transformationlayout.TransformationLayout
+        android:id="@+id/transformationLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="vertical"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="4dp">
+        app:transformation_duration="550">
 
-        <RelativeLayout
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/parentLayout"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@color/background800"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="4dp"
+            android:layout_margin="10dp">
 
-            <ImageView
-                android:id="@+id/view_holder_image"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@color/black"
-                app:urlToImage="@{mealDTO.strMealThumb}"
-                tools:src="@drawable/ic_placeholder" />
+                android:layout_height="250dp"
+                android:orientation="vertical"
+                android:foreground="?attr/selectableItemBackground"
+                tools:background="@color/background800"
+                tools:ignore="UnusedAttribute"
+                android:weightSum="3">
 
-            <TextView
-                android:id="@+id/view_holder_item_name"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@{mealDTO.strMeal}"
-                tools:text="Chicken"
-                android:gravity="center"
-                android:background="@color/white"
-                android:textColor="@color/black"
-                android:layout_alignParentBottom="true"/>
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/view_holder_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    app:urlToImage="@{mealDTO.strMealThumb}"
+                    tools:src="@drawable/ic_placeholder"
+                    android:layout_weight="2.5"
+                    />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/view_holder_item_name"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:background="@color/white"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@{mealDTO.strMeal}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="Chicken"
+                    android:padding="5dp"
+                    android:layout_marginBottom="5dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </com.skydoves.transformationlayout.TransformationLayout>
+
 </layout>

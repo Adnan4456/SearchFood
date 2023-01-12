@@ -7,11 +7,16 @@
         <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/drawable/background.xml" value="0.1375" />
         <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/drawable/bg_shape.xml" value="0.1375" />
         <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/drawable/layout_bg.xml" value="0.1375" />
+        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/drawable/scrollbar.xml" value="0.1375" />
         <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/fragment_meal_details.xml" value="0.1" />
+        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/fragment_meal_details.xml" value="0.25" />
         <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/fragment_meal_search.xml" value="0.25" />
+        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/search_toolbar.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/testfile.xml" value="0.18645833333333334" />
-        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/view_holder_search_list.xml" value="0.22" />
+        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/toolbar.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/layout/view_holder_search_list.xml" value="0.1" />
+        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/menu/menu_search.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/Adnan/AndroidStudioProjects/MealSearch/app/src/main/res/menu/mymenu.xml" value="0.18" />
       </map>
     </option>
   </component>

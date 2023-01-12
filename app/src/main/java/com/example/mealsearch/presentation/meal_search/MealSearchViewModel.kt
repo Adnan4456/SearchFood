@@ -1,6 +1,8 @@
 package com.example.mealsearch.presentation.meal_search
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -19,14 +21,21 @@ class MealSearchViewModel
  constructor(private val getMealSearchListUseCase: GetMealSearchListUseCase)
     : ViewModel() {
 
+    init {
+//         searchMealList("chicken")
+    }
     private val _mealSearchList = MutableStateFlow(MealSearchState())
     val mealSearchList:StateFlow<MealSearchState> = _mealSearchList
 
+    private val _searchQuery = MutableLiveData("chicken") // default value
+    val searchQuery : LiveData<String> = _searchQuery
 
 
-    fun searchMealList(s:String): Flow<PagingData<MealDTO>> {
+    fun searchMealList(query:String): Flow<PagingData<MealDTO>> {
 
-        return getMealSearchListUseCase.invoke(s)
+        _searchQuery.value = query
+
+        return getMealSearchListUseCase.invoke(query)
 //            .flowOn(Dispatchers.IO)
             .cachedIn(viewModelScope)
 /*

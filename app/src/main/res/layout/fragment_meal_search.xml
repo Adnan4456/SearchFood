@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".presentation.meal_search.MealSearchFragment">
 
-
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="50dp"
@@ -29,23 +28,57 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_meal"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:queryHint="Search meal"
-                app:iconifiedByDefault="false"
-                android:textColorHint = "@color/white"
-                />
+                android:background="@color/background800"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/teal_200">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="4dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/search_meal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:textColorHint="@color/white"
+                        app:iconifiedByDefault="false"
+                        app:queryHint="Search meal" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/layoutChanger"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.5"
+                        android:padding="5dp"
+                        android:scaleType="fitEnd"
+                        android:src="@drawable/dots"
+                        android:tint="@color/white" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"/>
+                android:clipToPadding="false"
+                android:fadeScrollbars="false"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbarThumbVertical="@drawable/scrollbar"
+                android:scrollbars="vertical"
+                android:transitionGroup="true"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:spanCount="2" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
 
     </RelativeLayout>
 

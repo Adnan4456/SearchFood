@@ -2,13 +2,17 @@ package com.example.mealsearch.presentation.meal_search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mealsearch.R
 
 import com.example.mealsearch.data.model.MealDTO
 import com.example.mealsearch.databinding.ViewHolderSearchListBinding
-import com.example.mealsearch.domain.model.Meal
 
 class MealPagingAdapter
 //@Inject
@@ -18,8 +22,21 @@ constructor(private val onClickListener: OnClickListener)
 
     class MyViewHolder(val binding: ViewHolderSearchListBinding) :
         RecyclerView.ViewHolder(binding.root){
-            fun bind(image: MealDTO){
+
+        private val banner: ImageView = binding.viewHolderImage
+        private val title: TextView = binding.viewHolderItemName
+
+            fun bind(
+                image: MealDTO,
+                onClickListener: OnClickListener){
+
+                banner.transitionName = image.idMeal
+                title.transitionName = image.strMeal
                 binding.mealDTO = image
+
+                binding.parentLayout.setOnClickListener {
+                    onClickListener.onClick(image , banner , title)
+                }
             }
         }
 
@@ -28,12 +45,15 @@ constructor(private val onClickListener: OnClickListener)
         val image =getItem(position)
 
         image?.let {
-            holder.bind(image)
+            holder.bind(image , onClickListener)
         }
 
-        holder.itemView.setOnClickListener{
-            onClickListener.onClick(image!!)
-        }
+//        holder.binding.viewHolderImage.apply {
+//            transitionName = "image $position"
+//        }
+//        holder.itemView.setOnClickListener{
+//            onClickListener.onClick(image!! , holder.binding.viewHolderImage, holder.binding.viewHolderItemName)
+//        }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
@@ -52,7 +72,10 @@ constructor(private val onClickListener: OnClickListener)
         override fun areContentsTheSame(oldItem: MealDTO, newItem: MealDTO): Boolean =
             oldItem == newItem
     }
-    class OnClickListener(val clickListener: (pix: MealDTO) -> Unit) {
-        fun onClick(pix: MealDTO) = clickListener(pix)
+    class OnClickListener(val clickListener: (pix: MealDTO, ImageView,TextView) -> Unit) {
+        fun onClick(pix: MealDTO,
+                    banner: ImageView,
+                    title: TextView
+        ) = clickListener(pix , banner , title)
     }
 }
